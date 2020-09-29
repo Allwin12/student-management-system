@@ -15,7 +15,20 @@ You can add/view/edit/delete students and schools.
 
 Clone the repo and run
 
-``pip install -r requirements.txt``
+```pip install -r requirements.txt```
 
 This will install all the required packages and libraries.
+ 
+ After that run
+ 
+```python
+python manage.py makemigrations
+```
+
+```shell script
+python maage.py mirate
+```
+
+
+
  
