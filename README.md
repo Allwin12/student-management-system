@@ -30,7 +30,7 @@ terminal:student-management-system ~$ python manage.py migrations
 This will create a migrations folder in the current directory, which consists of SQL statements and queries.
 
 ```console
-terminal:student-management-system ~$ python maage.py migrate
+terminal:student-management-system ~$ python manage.py migrate
 ```
 
 This will apply the migrations( Execute the SQL statements and make the db changes)
@@ -41,5 +41,5 @@ This will apply the migrations( Execute the SQL statements and make the db chang
 Then we can start the server to run in the port 8000 by
 
  ```console
-terminal:student-management-system ~$ python maage.py runserver 127.0.0.1:8000
+terminal:student-management-system ~$ python manage.py runserver 127.0.0.1:8000
 ```
