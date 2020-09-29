@@ -21,13 +21,17 @@ This will install all the required packages and libraries.
  
  After that run
  
-```python
-python manage.py makemigrations
+```console
+terminal:~$ python manage.py migrations
 ```
 
-```shell script
-python maage.py mirate
+This will create a migrations folder in the current directory, which consists of SQL statements and queries.
+
+```console
+terminal:~$ python maage.py migrate
 ```
+
+This will apply the migrations( Execute the SQL statements and make the db changes)
 
 
 
