@@ -3,3 +3,4 @@ venv/
 .git
 *.pyc
 *.log
+*.xml
