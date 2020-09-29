@@ -35,3 +35,12 @@ class StudentDetailView(APIView):
     def get(self, request, student_id):
         student = Student.objects.get(pk=student_id)
         return Response(StudentDetailSerializer(student).data)
+
+    def delete(self, request, student_id):
+        try:
+            student = Student.objects.get(pk=student_id)
+            student.delete()
+            return Response({'status': 'success', 'message': 'student deleted successfully!'})
+        except Student.DoesNotExist:
+            return Response({'status': 'failure', 'message': 'student data not available!'})
+
