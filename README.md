@@ -15,24 +15,31 @@ You can add/view/edit/delete students and schools.
 
 Clone the repo and run
 
-```pip install -r requirements.txt```
+```console
+terminal:student-management-system ~$ pip install -r requirements.txt
+```
 
 This will install all the required packages and libraries.
  
  After that run
  
 ```console
-terminal:~$ python manage.py migrations
+terminal:student-management-system ~$ python manage.py migrations
 ```
 
 This will create a migrations folder in the current directory, which consists of SQL statements and queries.
 
 ```console
-terminal:~$ python maage.py migrate
+terminal:student-management-system ~$ python maage.py migrate
 ```
 
 This will apply the migrations( Execute the SQL statements and make the db changes)
 
 
+## Start the server
 
- 
+Then we can start the server to run in the port 8000 by
+
+ ```console
+terminal:student-management-system ~$ python maage.py runserver 127.0.0.1:8000
+```
