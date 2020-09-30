@@ -22,3 +22,10 @@ class StudentDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
         fields = '__all__'
+
+
+class AddStudentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Student
+        fields = ('id', 'name', 'grade', 'section', 'school', 'blood_group', 'mobile', 'address')

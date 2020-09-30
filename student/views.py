@@ -2,7 +2,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from student.models import School, Student
-from student.serializers import SchoolListSerializer, StudentListSerializer, StudentDetailSerializer
+from student.serializers import SchoolListSerializer, StudentListSerializer, StudentDetailSerializer, \
+    AddStudentSerializer
 
 
 class SchoolView(APIView):
@@ -30,6 +31,18 @@ class StudentView(APIView):
         student_serializer = StudentListSerializer(students, many=True)
         return Response(student_serializer.data)
 
+    def post(self, request):
+        try:
+            data = request.data  # receive body data
+            serializer = AddStudentSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            else:
+                return Response({'status': 'failure', 'error': serializer.errors})
+        except Exception as e:
+            return Response({'status': 'failure', 'error': 'server could not process the request'})
+
 
 class StudentDetailView(APIView):
     def get(self, request, student_id):
@@ -44,3 +57,12 @@ class StudentDetailView(APIView):
         except Student.DoesNotExist:
             return Response({'status': 'failure', 'message': 'student data not available!'})
 
+    def put(self, request, student_id):
+        data = request.data
+        student = Student.objects.get(pk=student_id)
+        serializer = AddStudentSerializer(student, data=data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response({'status': 'failure', 'error': serializer.errors})
