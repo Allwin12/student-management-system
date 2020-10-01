@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 
 from student.models import School, Student
 from student.serializers import SchoolListSerializer, StudentListSerializer, StudentDetailSerializer, \
-    AddStudentSerializer
+    AddStudentSerializer, AddSchoolSerializer
 
 
 class SchoolView(APIView):
@@ -12,8 +12,25 @@ class SchoolView(APIView):
         school_serializer = SchoolListSerializer(schools, many=True)
         return Response(school_serializer.data)
 
+    def post(self, request):
+        data = request.data
+        serializer = AddSchoolSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response({'status': 'failure', 'error': serializer.errors})
+
 
 class SchoolDetailView(APIView):
+    def delete(self, request, school_id):
+        try:
+            school = School.objects.get(pk=school_id)
+            school.delete()
+            return Response({'status': 'success', 'message': 'school data deleted successfully!'})
+        except School.DoesNotExist:
+            return Response({'status': 'failure', 'message': 'school data not available!'})
+
     def get(self, request, school_id):
         school = School.objects.get(pk=school_id)
         school_serializer = SchoolListSerializer(school)
